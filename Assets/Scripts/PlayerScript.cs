@@ -8,7 +8,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] float torqueAmount = 1f;
 
     [SerializeField] float boostSpeed = 40f;
-    [SerializeField] float baseSpeed = 20f; 
+    [SerializeField] float baseSpeed = 20f;
+
+    bool canMove = true;
 
     Rigidbody2D rb2d;
     SurfaceEffector2D surfaceEffector2D;
@@ -23,9 +25,18 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotatePlayer();
-        RespondToBoost();
+        if (canMove)
+        {
+            RotatePlayer();
+            RespondToBoost();
+        }
+       
 
+    }
+
+    public void DisableControls()
+    {
+        canMove = false;
     }
 
     void RespondToBoost()
